@@ -7,6 +7,7 @@ from rdkit.Chem import rdDepictor
 from IPython.display import Image
 #import Retrosynthesis.Compound
 from retrosynthesis.Compound import Compound
+#import retrosynthesis.Compound 
 class Retrosynthesis:
     """This class uses the Compound class"""
     def __init__(self):
@@ -38,7 +39,7 @@ class Retrosynthesis:
                 new_cpd.DeleteBond(idx)
                 new_mol = Chem.MolFromMolBlock(new_cpd.GetMolfile())
                 new_inchi = Chem.MolToInchi(new_mol)
-                new_cpd = Compound.Compound(new_mol)
+                new_cpd = Compound(new_mol)
                 new_cpd.comments.append("%d DehydroBondFormation %d" % (i, idx))
             except:
                 print(sys.exc_info())
@@ -63,7 +64,7 @@ class Retrosynthesis:
                     new_cpd.AddBond(idx1, idx2, 1)
                     new_mol = Chem.MolFromMolBlock(new_cpd.GetMolfile())
                     new_inchi = Chem.MolToInchi(new_mol)
-                    new_cpd = Compound.Compound(new_mol)
+                    new_cpd = Compound(new_mol)
                     new_cpd.comments.append("%d HydroBondDigestion %d %d" % (i, idx1, idx2))
                 except:
                     print(sys.exc_info())
@@ -88,7 +89,7 @@ class Retrosynthesis:
                 new_cpd.AddBond(seq[1] + 1, seq[2] + 1, 1)
                 new_mol = Chem.MolFromMolBlock(new_cpd.GetMolfile())
                 new_inchi = Chem.MolToInchi(new_mol)
-                new_cpd = Compound.Compound(new_mol)
+                new_cpd = Compound(new_mol)
                 new_cpd.comments.append("%d UnsaturateTransfer2 %d %d %d" % (i, seq[0], seq[1], seq[2]))
             except:
                 print(sys.exc_info())
@@ -116,7 +117,7 @@ class Retrosynthesis:
                 new_cpd.AddBond(seq[3] + 1, seq[4] + 1, 1)
                 new_mol = Chem.MolFromMolBlock(new_cpd.GetMolfile())
                 new_inchi = Chem.MolToInchi(new_mol)
-                new_cpd = Compound.Compound(new_mol)
+                new_cpd = Compound(new_mol)
                 new_cpd.comments.append(
                     "%d UnsaturateTransfer4 %d %d %d %d %d" % (i, seq[0], seq[1], seq[2], seq[3], seq[4]))
             except:
@@ -146,7 +147,7 @@ class Retrosynthesis:
                 new_cpd.AddBond(seq[5] + 1, seq[6] + 1, 1)
                 new_mol = Chem.MolFromMolBlock(new_cpd.GetMolfile())
                 new_inchi = Chem.MolToInchi(new_mol)
-                new_cpd = Compound.Compound(new_mol)
+                new_cpd = Compound(new_mol)
                 new_cpd.comments.append(
                     "%d UnsaturateTransfer6 %d %d %d %d %d %d %d" % (i, seq[0], seq[1], seq[2], seq[3], seq[4],
                                                                     seq[5], seq[6]))
@@ -176,7 +177,7 @@ class Retrosynthesis:
                     new_cpd.AddBond(seq[5] + 1, seq[0] + 1, 1)
                     new_mol = Chem.MolFromMolBlock(new_cpd.GetMolfile())
                     new_inchi = Chem.MolToInchi(new_mol)
-                    new_cpd = Compound.Compound(new_mol)
+                    new_cpd = Compound(new_mol)
                     new_cpd.comments.append(
                         "%d AromaticRingRotate6 %d %d %d %d %d %d" % (i, seq[0], seq[1], seq[2], seq[3], seq[4],
                                                                         seq[5]))
@@ -207,7 +208,7 @@ class Retrosynthesis:
                     #print(new_cpd.GetMolFile())
                     new_mol = Chem.MolFromMolBlock(new_cpd.GetMolfile())
                     new_inchi = Chem.MolToInchi(new_mol)
-                    new_cpd = Compound.Compound(new_mol)
+                    new_cpd = Compound(new_mol)
                     new_cpd.comments.append(
                         "%d AromaticRingRotate6 %d %d %d %d %d %d" % (i, seq[0], seq[1], seq[2], seq[3], seq[4],
                                                                         seq[5]))
@@ -237,7 +238,7 @@ class Retrosynthesis:
                 new_cpd.DeleteBond(int(new_cpd.matrix[seq[1]][seq[2]] - 1))
                 new_mol = Chem.MolFromMolBlock(new_cpd.GetMolfile())
                 new_inchi = Chem.MolToInchi(new_mol)
-                new_cpd = Compound.Compound(new_mol)
+                new_cpd = Compound(new_mol)
                 new_cpd.comments.append("%d AdditionReaction %d %d %d" % (i, seq[0], seq[1], seq[2]))
             except:
                 print(sys.exc_info())
@@ -263,7 +264,7 @@ class Retrosynthesis:
                         new_cpd.AddBond(int(b1[0]), int(b1[1]), 1)
                         new_mol = Chem.MolFromMolBlock(new_cpd.GetMolfile())
                         new_inchi = Chem.MolToInchi(new_mol)
-                        new_cpd = Compound.Compound(new_mol)
+                        new_cpd = Compound(new_mol)
                         new_cpd.comments.append(
                             "%d EliminationReaction %d %d %d" % (i, int(b1[0]), int(b1[1]), atmidx))
                     except:
@@ -283,7 +284,7 @@ class Retrosynthesis:
                         new_cpd.AddBond(int(b1[1]), int(b1[0]), 1)
                         new_mol = Chem.MolFromMolBlock(new_cpd.GetMolfile())
                         new_inchi = Chem.MolToInchi(new_mol)
-                        new_cpd = Compound.Compound(new_mol)
+                        new_cpd = Compound(new_mol)
                         new_cpd.comments.append(
                             "%d EliminationReaction %d %d %d" % (i, int(b1[1]), int(b1[0]), atmidx))
                     except:
@@ -311,7 +312,7 @@ class Retrosynthesis:
                         new_cpd.DeleteBond(bond1idx)
                         new_mol = Chem.MolFromMolBlock(new_cpd.GetMolfile())
                         new_inchi = Chem.MolToInchi(new_mol)
-                        new_cpd = Compound.Compound(new_mol)
+                        new_cpd = Compound(new_mol)
                         new_cpd.comments.append(
                             "%d RearrangementReaction %d %d %d" % (i, int(b1[0]), int(b1[1]), atmidx))
                     except:
@@ -330,7 +331,7 @@ class Retrosynthesis:
                         new_cpd.DeleteBond(bond1idx)
                         new_mol = Chem.MolFromMolBlock(new_cpd.GetMolfile())
                         new_inchi = Chem.MolToInchi(new_mol)
-                        new_cpd = Compound.Compound(new_mol)
+                        new_cpd = Compound(new_mol)
                         new_cpd.comments.append(
                             "%d RearrangementReaction %d %d %d" % (i, int(b1[1]), int(b1[0]), atmidx))
                     except:
@@ -366,7 +367,7 @@ class Retrosynthesis:
                     new_cpd.AddBond(ary1[2], ary2[2], 2)
                     new_mol = Chem.MolFromMolBlock(new_cpd.GetMolfile())
                     new_inchi = Chem.MolToInchi(new_mol)
-                    new_cpd = Compound.Compound(new_mol)
+                    new_cpd = Compound(new_mol)
                     new_cpd.comments.append(
                         "%d DiOxidativeDigestion %d %d" % (i, ary1[0], ary2[0]))
                 except:
@@ -391,7 +392,7 @@ class Retrosynthesis:
                 new_cpd.AddBond(seq[0] + 1, seq[2] + 1, 1)
                 new_mol = Chem.MolFromMolBlock(new_cpd.GetMolfile())
                 new_inchi = Chem.MolToInchi(new_mol)
-                new_cpd = Compound.Compound(new_mol)
+                new_cpd = Compound(new_mol)
                 new_cpd.comments.append(
                     "%d InsertOxygen %d %d %d" % (i, seq[0], seq[1], seq[2]))
             except:
@@ -418,7 +419,7 @@ class Retrosynthesis:
                     new_cpd.DeleteBond(int(new_cpd.matrix[seq[0]][seq[5]]) - 1)
                     new_mol = Chem.MolFromMolBlock(new_cpd.GetMolfile())
                     new_inchi = Chem.MolToInchi(new_mol)
-                    new_cpd = Compound.Compound(new_mol)
+                    new_cpd = Compound(new_mol)
                     new_cpd.comments.append(
                     "%d DielsAlder %d %d %d %d %d %d" % (i, seq[0], seq[1], seq[2], seq[3], seq[4], seq[5]))
                 except:
@@ -458,7 +459,7 @@ class Retrosynthesis:
                         new_cpd.AddBond(bb[1] + 1, seq[0] + 1, 1)
                         new_mol = Chem.MolFromMolBlock(new_cpd.GetMolfile())
                         new_inchi = Chem.MolToInchi(new_mol)
-                        new_cpd = Compound.Compound(new_mol)
+                        new_cpd = Compound(new_mol)
                         new_cpd.comments.append(
                         "%d RetroDielsAlder %d %d %d %d %d %d" % (i, seq[0], seq[1], seq[2], seq[3], bb[0], bb[1]))
                     except:
@@ -488,7 +489,7 @@ class Retrosynthesis:
                 new_cpd.AddBond(seq[0] + 1, seq[5] + 1, 1) # AF
                 new_mol = Chem.MolFromMolBlock(new_cpd.GetMolfile())
                 new_inchi = Chem.MolToInchi(new_mol)
-                new_cpd = Compound.Compound(new_mol)
+                new_cpd = Compound(new_mol)
                 new_cpd.comments.append(
                 "%d CopeRearrangement %d %d %d %d %d %d" % (i, seq[0], seq[1], seq[2], seq[3], seq[4], seq[5]))
             except:
@@ -516,7 +517,7 @@ class Retrosynthesis:
                 new_cpd.DeleteBond(int(new_cpd.matrix[seq[3]][seq[0]]) - 1) # DA
                 new_mol = Chem.MolFromMolBlock(new_cpd.GetMolfile())
                 new_inchi = Chem.MolToInchi(new_mol)
-                new_cpd = Compound.Compound(new_mol)
+                new_cpd = Compound(new_mol)
                 new_cpd.comments.append(
                 "%d Cycloaddition22 %d %d %d %d" % (i, seq[0], seq[1], seq[2], seq[3]))
             except:
